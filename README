@@ -8,10 +8,14 @@ Example:
 
     @Pending
     public class MyTest {
+        @Rule public MethodRule pendingRule = new PendingRule();
+        
         ...
     }
     
     public class MyTest {
+        @Rule public MethodRule pendingRule = new PendingRule();
+        
         @Pending
         @Test public void
         testMethod() {
@@ -23,3 +27,21 @@ Tests marked as pending will be printed to sysout.
 
 Example:
     Pending test: MyTest.testMethod()
+	
+The @Pending annotation takes an optional default parameter if you want to
+record why a test is marked as pending.  
+
+Example:
+    Code:
+        public class MyTest {
+           @Rule public MethodRule pendingRule = new PendingRule();
+           
+           @Pending("Work in progress")
+           @Test public void
+           testMethod() {
+               ...
+           }
+        }
+    
+    Output:
+        Pending test: MyTest.testMethod()

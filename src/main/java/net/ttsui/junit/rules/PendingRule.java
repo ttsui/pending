@@ -9,12 +9,7 @@ public class PendingRule implements MethodRule {
     @Override
 	public Statement apply(Statement base, final FrameworkMethod method, Object target) {
         if (isAnnotatedWithPending(method)) {
-            return new Statement() {
-                @Override
-                public void evaluate() throws Throwable {
-                    System.out.println(String.format("Pending test: %s()", method.getName()));
-                }
-            };
+            return pendingStatementFor(method);
         }
         
         return base;
@@ -31,4 +26,14 @@ public class PendingRule implements MethodRule {
     private boolean isMethodAnnotatedWithPending(FrameworkMethod method) {
         return method.getAnnotation(Pending.class) != null;
     }
+    
+    private Statement pendingStatementFor(final FrameworkMethod method) {
+        return new Statement() {
+            @Override
+            public void evaluate() throws Throwable {
+                System.out.println(String.format("Pending test: %s.%s()", method.getMethod().getDeclaringClass().getSimpleName(), method.getName()));
+            }
+        };
+    }
+
 }

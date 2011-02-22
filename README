@@ -1,0 +1,25 @@
+Pending is a JUnit rule and annotation for marking tests as pending. A pending
+test will not be evaluated.
+
+Add the @Pending annotation to either a test class or method to mark tests as 
+pending.
+
+Example:
+
+    @Pending
+    public class MyTest {
+        ...
+    }
+    
+    public class MyTest {
+        @Pending
+        @Test public void
+        testMethod() {
+            ...
+        }
+    }
+
+Tests marked as pending will be printed to sysout.
+
+Example:
+    Pending test: MyTest.testMethod()

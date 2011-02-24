@@ -13,11 +13,15 @@ import org.junit.runners.model.Statement;
 public class PendingRule implements MethodRule {
     private final boolean showOutput;
     
+    public static PendingRule withOutput() {
+        return new PendingRule(true);
+    }
+    
     public PendingRule() {
         this(false);
     }
     
-    public PendingRule(boolean showOutput) {
+    private PendingRule(boolean showOutput) {
         this.showOutput = showOutput;
     }
     

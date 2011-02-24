@@ -11,6 +11,16 @@ import org.junit.runners.model.Statement;
 
 
 public class PendingRule implements MethodRule {
+    private final boolean showOutput;
+    
+    public PendingRule() {
+        this(false);
+    }
+    
+    public PendingRule(boolean showOutput) {
+        this.showOutput = showOutput;
+    }
+    
     @Override
 	public Statement apply(Statement base, final FrameworkMethod method, Object target) {
         if (isAnnotatedWithPending(method)) {
@@ -36,6 +46,10 @@ public class PendingRule implements MethodRule {
         return new Statement() {
             @Override
             public void evaluate() throws Throwable {
+                if (!showOutput) {
+                    return;
+                }
+                
                 Class<?> declaringClass = method.getMethod().getDeclaringClass();
                 
                 StringBuilder output = new StringBuilder("PENDING TEST: ");

@@ -31,7 +31,7 @@ public class PendingRuleTest {
         }
     }
 
-    @Pending
+    @Pending("Reason for pending")
     public static class PendingAnnotationOnClass {
         @Rule public MethodRule pendingRule = new PendingRule();
         

@@ -3,10 +3,12 @@ package net.ttsui.junit.rules;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.lib.legacy.ClassImposteriser;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
@@ -77,7 +79,7 @@ public class PendingRuleTest {
         
         @Test public void
         failingTestShouldPass() {
-            assertEquals(1, 2);
+            fail();
         }
         
         @Test(expected=AssertionError.class) public void

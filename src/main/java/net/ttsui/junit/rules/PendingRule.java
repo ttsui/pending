@@ -28,14 +28,20 @@ public class PendingRule implements MethodRule {
     @Override
 	public Statement apply(Statement base, final FrameworkMethod method, Object target) {
         if (isAnnotatedWithPending(method)) {
-            return pendingStatementFor(method);
+            try {
+                base.evaluate();
+            } catch (Throwable e) {
+                return pendingStatementFor(method);
+            }
+            
+            throw new AssertionError();
         }
         
         return base;
     }
 
     private boolean isAnnotatedWithPending(final FrameworkMethod method) {
-        return isClassAnnotatedWithPending(method.getMethod().getDeclaringClass()) || isMethodAnnotatedWithPending(method);
+        return isMethodAnnotatedWithPending(method) || isClassAnnotatedWithPending(method.getMethod().getDeclaringClass());
     }
     
     private boolean isClassAnnotatedWithPending(Class<?> klass) {

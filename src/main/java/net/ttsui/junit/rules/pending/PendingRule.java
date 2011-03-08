@@ -34,7 +34,7 @@ public class PendingRule implements MethodRule {
                 return pendingStatementFor(method);
             }
             
-            throw new AssertionError();
+            throw new AssertionError("Unexpected success");
         }
         
         return base;

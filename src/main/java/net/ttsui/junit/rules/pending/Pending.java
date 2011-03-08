@@ -1,4 +1,4 @@
-package net.ttsui.junit.rules;
+package net.ttsui.junit.rules.pending;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

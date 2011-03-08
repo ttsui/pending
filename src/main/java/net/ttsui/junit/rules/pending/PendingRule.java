@@ -1,4 +1,4 @@
-package net.ttsui.junit.rules;
+package net.ttsui.junit.rules.pending;
 
 import static java.lang.String.format;
 

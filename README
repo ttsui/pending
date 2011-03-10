@@ -1,5 +1,6 @@
-Pending is a JUnit rule and annotation for marking tests as pending. A pending
-test will not be evaluated.
+Pending is a JUnit rule and annotation for marking tests as pending. A pending 
+test is expected to fail. Should the test pass the unexpected success will be
+reported.  
 
 Add the @Pending annotation to either a test class or method to mark tests as 
 pending.
@@ -10,6 +11,7 @@ Example:
     public class MyTest {
         @Rule public MethodRule pendingRule = new PendingRule();
         
+        /* Failing test methods */
         ...
     }
     
@@ -19,27 +21,10 @@ Example:
         @Pending
         @Test public void
         testMethod() {
+            /* Failing test */
             ...
         }
     }
-
-Use the static constructor PendingRule.withOutput() to print pending test
-method names to standard out.
-
-Example:
-    Code:
-        public class MyTest {
-            @Rule public MethodRule pendingRule = PendingRule.withOutput();
-            
-            @Pending
-            @Test public void
-            testMethod() {
-                ...
-            }
-        }
-        
-    Output:
-        PENDING TEST: MyTest.testMethod()
 
 The @Pending annotation takes an optional default parameter if you want to
 record why a test is marked as pending.  
@@ -52,9 +37,7 @@ Example:
            @Pending("Work in progress")
            @Test public void
            testMethod() {
-               ...
+                /* Failing test */
+                ...
            }
         }
-    
-    Output:
-        PENDING TEST: MyTest.testMethod() [Work in progress]

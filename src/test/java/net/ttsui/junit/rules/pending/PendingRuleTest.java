@@ -11,7 +11,6 @@ import org.jmock.lib.legacy.ClassImposteriser;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
-import org.junit.rules.MethodRule;
 import org.junit.runner.RunWith;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
@@ -74,7 +73,7 @@ public class PendingRuleTest {
 
     @Pending("Reason for pending")
     public static class PendingAnnotationOnClass {
-        @Rule public MethodRule pendingRule = PendingRule.withOutput();
+        @Rule public PendingRule pendingRule = new PendingRule();
         
         @Test public void
         failingTestShouldPass() {

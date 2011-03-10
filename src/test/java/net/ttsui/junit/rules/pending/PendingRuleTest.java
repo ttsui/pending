@@ -86,4 +86,11 @@ public class PendingRuleTest {
             assertEquals(1, 1);
         }
     }
+    
+    public static class PendingRuleOutput {
+        @Test public void
+        writesOutputToGivenStream() {
+            
+        }
+    }
 }

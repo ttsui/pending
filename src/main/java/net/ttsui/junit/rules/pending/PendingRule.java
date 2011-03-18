@@ -27,11 +27,11 @@ public class PendingRule implements MethodRule {
     }
     
     private boolean isClassAnnotatedWithPending(Class<?> klass) {
-        return klass.getAnnotation(Pending.class) != null;
+        return klass.getAnnotation(PendingImplementation.class) != null;
     }
     
     private boolean isMethodAnnotatedWithPending(FrameworkMethod method) {
-        return method.getAnnotation(Pending.class) != null;
+        return method.getAnnotation(PendingImplementation.class) != null;
     }
     
     private Statement noOpStatement() {

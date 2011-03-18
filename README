@@ -7,7 +7,7 @@ pending.
 
 Example:
 
-    @Pending
+    @PendingImplementation
     public class MyTest {
         @Rule public MethodRule pendingRule = new PendingRule();
         
@@ -18,7 +18,7 @@ Example:
     public class MyTest {
         @Rule public MethodRule pendingRule = new PendingRule();
         
-        @Pending
+        @PendingImplementation
         @Test public void
         testMethod() {
             /* Failing test */
@@ -34,7 +34,7 @@ Example:
         public class MyTest {
            @Rule public MethodRule pendingRule = PendingRule.withOutput();
            
-           @Pending("Work in progress")
+           @PendingImplementation("Work in progress")
            @Test public void
            testMethod() {
                 /* Failing test */

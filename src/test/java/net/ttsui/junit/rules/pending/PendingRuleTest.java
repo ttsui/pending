@@ -24,13 +24,13 @@ public class PendingRuleTest {
         private final FrameworkMethod frameworkMethod = context.mock(FrameworkMethod.class);
         
         @Test public void
-        failingTestAnnotatedWithPendingShouldPass() throws Throwable {
-            final Pending annotation = context.mock(Pending.class);
+        failingTestAnnotatedWithPendingImplemenationShouldPass() throws Throwable {
+            final PendingImplementation annotation = context.mock(PendingImplementation.class);
             
             context.checking(new Expectations() {{
                 oneOf(base).evaluate(); will(throwException(new AssertionError()));
                 
-                allowing(frameworkMethod).getAnnotation(Pending.class); will(returnValue(annotation));
+                allowing(frameworkMethod).getAnnotation(PendingImplementation.class); will(returnValue(annotation));
             }});
             
             PendingRule rule = new PendingRule();
@@ -40,12 +40,12 @@ public class PendingRuleTest {
         }
         
         @Test(expected=AssertionError.class) public void
-        passingTestAnnotatedWithPendingShouldFail() throws Throwable {
-            final Pending annotation = context.mock(Pending.class);
+        passingTestAnnotatedWithPendingImplementationShouldFail() throws Throwable {
+            final PendingImplementation annotation = context.mock(PendingImplementation.class);
             
             context.checking(new Expectations() {{
                 allowing(base).evaluate();
-                allowing(frameworkMethod).getAnnotation(Pending.class); will(returnValue(annotation));
+                allowing(frameworkMethod).getAnnotation(PendingImplementation.class); will(returnValue(annotation));
             }});
             
             PendingRule rule = new PendingRule();
@@ -53,10 +53,10 @@ public class PendingRuleTest {
         }
         
         @Test public void
-        returnsOriginalStatementForTestsNotAnnotatedWithPending() {
+        returnsOriginalStatementForTestsNotAnnotatedWithPendingImplementation() {
             
             context.checking(new Expectations() {{
-                oneOf(frameworkMethod).getAnnotation(Pending.class); will(returnValue(null));
+                oneOf(frameworkMethod).getAnnotation(PendingImplementation.class); will(returnValue(null));
                 oneOf(frameworkMethod).getMethod(); will(returnValue(TestClassWithoutAnnotation.class.getDeclaredMethods()[0]));
             }});
             
@@ -71,8 +71,8 @@ public class PendingRuleTest {
         }
     }
 
-    @Pending("Reason for pending")
-    public static class PendingAnnotationOnClass {
+    @PendingImplementation("Reason for pending")
+    public static class PendingImplementationAnnotationOnClass {
         @Rule public PendingRule pendingRule = new PendingRule();
         
         @Test public void

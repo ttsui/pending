@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 
-public class PendingRuleSemantics {
+public class PendingRuleSemanticsTest {
     private Mockery context = new Mockery() {{ setImposteriser(ClassImposteriser.INSTANCE); }};
     private final Statement base = context.mock(Statement.class);
     private final FrameworkMethod frameworkMethod = context.mock(FrameworkMethod.class);

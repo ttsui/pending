@@ -7,7 +7,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 @PendingImplementation("Reason for pending")
-public class PendingImplementationAnnotationOnClass {
+public class PendingImplementationAnnotationOnClassTest {
     @Rule public PendingRule pendingRule = new PendingRule();
     
     @Test public void

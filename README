@@ -5,7 +5,7 @@ Pending provides is a JUnit rule and annotation for marking tests as pending.
 A pending test is expected to fail. Should the test pass the unexpected success 
 will be reported.
 
-Marking Tests As Pending with @PendingImplementation
+Mark Tests As Pending with @PendingImplementation
 ----------------------------------------------------
 Add the @PendingImplementation annotation to either a test class or method to
 mark tests as pending.
@@ -48,7 +48,7 @@ Example:
         }
 
         
-Marking Tests As Pending with JUnit @Category
+Mark Tests As Pending with JUnit @Category
 --------------------------------------------
 Tests can be marked as pending by using with JUnit's @Category annotation.
 

@@ -7,6 +7,7 @@ import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.lib.legacy.ClassImposteriser;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 
@@ -22,6 +23,7 @@ public class PendingRuleSemanticsTest {
         context.checking(new Expectations() {{
             oneOf(base).evaluate(); will(throwException(new AssertionError()));
             
+            allowing(frameworkMethod).getAnnotation(Category.class); will(returnValue(null));
             allowing(frameworkMethod).getAnnotation(PendingImplementation.class); will(returnValue(annotation));
         }});
         
@@ -37,6 +39,7 @@ public class PendingRuleSemanticsTest {
         
         context.checking(new Expectations() {{
             allowing(base).evaluate();
+            allowing(frameworkMethod).getAnnotation(Category.class); will(returnValue(null));
             allowing(frameworkMethod).getAnnotation(PendingImplementation.class); will(returnValue(annotation));
         }});
         
@@ -48,8 +51,9 @@ public class PendingRuleSemanticsTest {
     returnsOriginalStatementForTestsNotAnnotatedWithPendingImplementation() {
         
         context.checking(new Expectations() {{
-            oneOf(frameworkMethod).getAnnotation(PendingImplementation.class); will(returnValue(null));
-            oneOf(frameworkMethod).getMethod(); will(returnValue(TestClassWithoutAnnotation.class.getDeclaredMethods()[0]));
+            allowing(frameworkMethod).getAnnotation(Category.class); will(returnValue(null));
+            allowing(frameworkMethod).getAnnotation(PendingImplementation.class); will(returnValue(null));
+            allowing(frameworkMethod).getMethod(); will(returnValue(TestClassWithoutAnnotation.class.getDeclaredMethods()[0]));
         }});
         
         PendingRule rule = new PendingRule();

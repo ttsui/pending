@@ -1,5 +1,6 @@
 package net.ttsui.junit.rules.pending;
 
+import org.junit.experimental.categories.Category;
 import org.junit.rules.MethodRule;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
@@ -7,9 +8,19 @@ import org.junit.runners.model.Statement;
 
 public class PendingRule implements MethodRule {
     
+    private final Class<?> pendingCategory;
+
+    public PendingRule(Class<?> category) {
+        this.pendingCategory = category;
+    }
+    
+    public PendingRule() { 
+        pendingCategory = null;
+    }
+
     @Override
 	public Statement apply(Statement base, final FrameworkMethod method, Object target) {
-        if (isAnnotatedWithPending(method)) {
+        if (isCategorisedAsPending(method) || isAnnotatedWithPending(method)) {
             try {
                 base.evaluate();
             } catch (Throwable e) {
@@ -20,6 +31,22 @@ public class PendingRule implements MethodRule {
         }
         
         return base;
+    }
+
+    private boolean isCategorisedAsPending(FrameworkMethod method) {
+        Category annotation = method.getAnnotation(Category.class);
+    
+        if (annotation == null) {
+            return false;
+        }
+        
+        for (Class<?> category : annotation.value()) {
+            if (category == pendingCategory) {
+                return true;
+            }
+        }
+    
+        return false;
     }
 
     private boolean isAnnotatedWithPending(final FrameworkMethod method) {

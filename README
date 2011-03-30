@@ -1,4 +1,4 @@
-Pending is an alternative to using @Ignore to bypass tests that are failing 
+Pending is an alternative to using @Ignore for bypassing tests that are failing 
 due to the functionality not being implemented yet.
 
 Pending provides is a JUnit rule and annotation for marking tests as pending.

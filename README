@@ -1,9 +1,14 @@
-Pending is a JUnit rule and annotation for marking tests as pending. A pending 
-test is expected to fail. Should the test pass the unexpected success will be
-reported.  
+Pending is an alternative to using @Ignore to bypass tests that are failing 
+due to the functionality not being implemented yet.
 
-Add the @Pending annotation to either a test class or method to mark tests as 
-pending.
+Pending provides is a JUnit rule and annotation for marking tests as pending.
+A pending test is expected to fail. Should the test pass the unexpected success 
+will be reported.
+
+Marking Tests As Pending with @PendingImplementation
+----------------------------------------------------
+Add the @PendingImplementation annotation to either a test class or method to
+mark tests as pending.
 
 Example:
 
@@ -41,3 +46,29 @@ Example:
                 ...
            }
         }
+
+        
+Marking Tests As Pending with JUnit @Category
+--------------------------------------------
+Tests can be marked as pending by using with JUnit's @Category annotation.
+
+Example:
+
+    @Category(PendingCategory.class)
+    public class MyTest {
+        @Rule public MethodRule pendingRule = new PendingRule(PendingCategory.class);
+        
+        /* Failing test methods */
+        ...
+    }
+    
+    public class MyTest {
+        @Rule public MethodRule pendingRule = new PendingRule(PendingCategory.class);
+        
+        @Category(PendingCategory.class)
+        @Test public void
+        testMethod() {
+            /* Failing test */
+            ...
+        }
+    } 

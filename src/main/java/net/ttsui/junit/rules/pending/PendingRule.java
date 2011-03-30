@@ -20,7 +20,7 @@ public class PendingRule implements MethodRule {
 
     @Override
 	public Statement apply(Statement base, final FrameworkMethod method, Object target) {
-        if (isCategorisedAsPending(method) || isAnnotatedWithPending(method)) {
+        if (isAnnotatedWithPending(method) || isCategorisedAsPending(method)) {
             try {
                 base.evaluate();
             } catch (Throwable e) {
@@ -33,9 +33,37 @@ public class PendingRule implements MethodRule {
         return base;
     }
 
+    private boolean isAnnotatedWithPending(final FrameworkMethod method) {
+        return isMethodAnnotatedWithPending(method) 
+            || isClassAnnotatedWithPending((Class<?>) method.getMethod().getDeclaringClass());
+    }
+    
     private boolean isCategorisedAsPending(FrameworkMethod method) {
+        return isMethodCategorisedAsPending(method)
+            || isClassCategoriedAsPending((Class<?>) method.getMethod().getDeclaringClass());
+    }
+
+    private boolean isMethodAnnotatedWithPending(FrameworkMethod method) {
+        return method.getAnnotation(PendingImplementation.class) != null;
+    }
+    
+    private boolean isClassAnnotatedWithPending(Class<?> klass) {
+        return klass.getAnnotation(PendingImplementation.class) != null;
+    }
+
+    private boolean isMethodCategorisedAsPending(FrameworkMethod method) {
         Category annotation = method.getAnnotation(Category.class);
     
+        return containsPendingCategory(annotation);
+    }
+
+    private boolean isClassCategoriedAsPending(Class<?> klass) {
+        Category annotation = klass.getAnnotation(Category.class);
+    
+        return containsPendingCategory(annotation);
+    }
+
+    private boolean containsPendingCategory(Category annotation) {
         if (annotation == null) {
             return false;
         }
@@ -49,18 +77,6 @@ public class PendingRule implements MethodRule {
         return false;
     }
 
-    private boolean isAnnotatedWithPending(final FrameworkMethod method) {
-        return isMethodAnnotatedWithPending(method) || isClassAnnotatedWithPending(method.getMethod().getDeclaringClass());
-    }
-    
-    private boolean isClassAnnotatedWithPending(Class<?> klass) {
-        return klass.getAnnotation(PendingImplementation.class) != null;
-    }
-    
-    private boolean isMethodAnnotatedWithPending(FrameworkMethod method) {
-        return method.getAnnotation(PendingImplementation.class) != null;
-    }
-    
     private Statement noOpStatement() {
         return new Statement() {
             @Override public void evaluate() throws Throwable { }

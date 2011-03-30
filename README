@@ -50,7 +50,7 @@ Example:
         
 Mark Tests As Pending with JUnit @Category
 --------------------------------------------
-Tests can be marked as pending by using with JUnit's @Category annotation.
+Tests can be marked as pending with JUnit's @Category annotation.
 
 Example:
 

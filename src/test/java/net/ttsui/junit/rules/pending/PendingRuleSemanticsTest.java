@@ -21,7 +21,7 @@ public class PendingRuleSemanticsTest {
         final PendingImplementation annotation = context.mock(PendingImplementation.class);
         
         context.checking(new Expectations() {{
-            oneOf(base).evaluate(); will(throwException(new AssertionError()));
+            oneOf(base).evaluate(); will(throwException(new Throwable()));
             
             allowing(frameworkMethod).getAnnotation(Category.class); will(returnValue(null));
             allowing(frameworkMethod).getAnnotation(PendingImplementation.class); will(returnValue(annotation));

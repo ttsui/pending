@@ -1,10 +1,5 @@
 package net.ttsui.junit.rules.pending;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-
-import java.lang.reflect.Method;
-
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.lib.legacy.ClassImposteriser;
@@ -12,6 +7,9 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 public class PendingRuleSemanticsTest {
     private Mockery context = new Mockery() {{ setImposteriser(ClassImposteriser.INSTANCE); }};

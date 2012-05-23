@@ -21,13 +21,7 @@ public class PendingRule implements MethodRule {
     @Override
 	public Statement apply(Statement base, final FrameworkMethod method, Object target) {
         if (isAnnotatedWithPending(method) || isCategorisedAsPending(method)) {
-            try {
-                base.evaluate();
-            } catch (Throwable e) {
-                return noOpStatement();
-            }
-            
-            throw new AssertionError("Unexpected success");
+            return new PendingImplementationStatement(base);
         }
         
         return base;
@@ -75,12 +69,6 @@ public class PendingRule implements MethodRule {
         }
     
         return false;
-    }
-
-    private Statement noOpStatement() {
-        return new Statement() {
-            @Override public void evaluate() throws Throwable { }
-        };
     }
 
 }

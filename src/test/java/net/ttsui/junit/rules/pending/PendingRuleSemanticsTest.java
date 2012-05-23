@@ -28,7 +28,7 @@ public class PendingRuleSemanticsTest {
         }});
         
         PendingRule rule = new PendingRule();
-        rule.apply(base, frameworkMethod, null);
+        rule.apply(base, frameworkMethod, null).evaluate();
         
         context.assertIsSatisfied();
     }
@@ -44,7 +44,7 @@ public class PendingRuleSemanticsTest {
         }});
         
         PendingRule rule = new PendingRule();
-        rule.apply(base, frameworkMethod, null);
+        rule.apply(base, frameworkMethod, null).evaluate();
     }
     
     @Test public void

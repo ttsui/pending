@@ -11,6 +11,9 @@ import org.junit.experimental.categories.Category;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+
 public class PendingRuleSemanticsTest {
     private Mockery context = new Mockery() {{ setImposteriser(ClassImposteriser.INSTANCE); }};
     private final Statement base = context.mock(Statement.class);
@@ -28,7 +31,7 @@ public class PendingRuleSemanticsTest {
         }});
         
         PendingRule rule = new PendingRule();
-        rule.apply(base, frameworkMethod, null);
+        rule.apply(base, frameworkMethod, null).evaluate();
         
         context.assertIsSatisfied();
     }
@@ -44,7 +47,7 @@ public class PendingRuleSemanticsTest {
         }});
         
         PendingRule rule = new PendingRule();
-        rule.apply(base, frameworkMethod, null);
+        rule.apply(base, frameworkMethod, null).evaluate();
     }
     
     @Test public void

@@ -1,0 +1,4 @@
+0.0.3
+=====
+* Correctly fail due to unexpected success in the JUnit test lifecyle. Many
+  thanks for the fix Joe. [Joe Schmetzer https://github.com/tumbarumba]

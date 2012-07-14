@@ -4,7 +4,7 @@
   <groupId>net.ttsui.junit.rules.pending</groupId>
   <artifactId>pending</artifactId>
   <packaging>jar</packaging>
-  <version>0.0.4-SNAPSHOT</version>
+  <version>0.0.4</version>
   <name>pending</name>
   <url>https://github.com/ttsui/pending</url>
   <dependencies>

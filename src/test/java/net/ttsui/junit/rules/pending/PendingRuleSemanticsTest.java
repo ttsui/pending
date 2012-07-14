@@ -11,9 +11,6 @@ import org.junit.experimental.categories.Category;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-
 public class PendingRuleSemanticsTest {
     private Mockery context = new Mockery() {{ setImposteriser(ClassImposteriser.INSTANCE); }};
     private final Statement base = context.mock(Statement.class);

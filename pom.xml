@@ -18,8 +18,8 @@
   </licenses>  
 
   <scm>
-    <connection>scm:git:https://github.com/ttsui/pending.git</connection>
     <url>https://github.com/ttsui/pending</url>
+    <connection>scm:git:https://github.com/ttsui/pending.git</connection>
   </scm>
 
   <developers>

@@ -9,6 +9,14 @@
   <description>Pending is an alternative to using JUnit @Ignore for bypassing tests that are failing due to the functionality not being implemented yet.</description>
   <url>http://pending.ttsui.net</url>
 
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>http://opensource.org/licenses/mit-license.php</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>  
+
   <scm>
     <connection>scm:git:https://github.com/ttsui/pending.git</connection>
     <url>https://github.com/ttsui/pending</url>

@@ -19,7 +19,8 @@
 
   <scm>
     <url>https://github.com/ttsui/pending</url>
-    <connection>scm:git:https://github.com/ttsui/pending.git</connection>
+    <connection>scm:git:git@github.com:ttsui/pending.git</connection>
+    <developerConnection>scm:git:git@github.com:ttsui/pending.git</developerConnection>
   </scm>
 
   <developers>
@@ -29,6 +30,12 @@
       <email>tsui.tony@gmail.com</email>
     </developer>
   </developers>
+
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+  </parent>
 
   <dependencies>
     <dependency>
